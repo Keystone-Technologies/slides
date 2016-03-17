@@ -1,0 +1,214 @@
+#!/usr/bin/env perl
+# This is a Mojolicious app, specifically a Lite app
+use Mojolicious::Lite;
+
+# Path to project-specific libraries
+use FindBin;
+BEGIN { unshift @INC, "$FindBin::Bin/lib" }
+
+# Load libraries
+use Lingua::31337;
+
+# Load the plugin that provides SimpleSlides
+plugin 'SimpleSlides';
+# Tell SimpleSlides how many slides there are
+app->simple_slides->last_slide(17);
+
+# This is just to show a dynamic route, outside of the magical plugin
+get '/time' => sub { shift->render(text => scalar localtime) };
+
+# This is to show logging capabilities, as well as inform you every time
+# morbo restarts due to changed files
+app->log->info("start");
+
+# Start the Mojo Webserver and serve this Mojolicious app
+app->start;
+
+# These are embedded templates, but as a project grows you'll probably want to
+# move each file into templates/
+###############################################################################
+__DATA__
+
+@@ 1.html.ep
+
+# Programming: How to Get Started??
+
+@@ 2.html.ep
+
+%= include '1'
+
+### But first... a thought experiment
+
+* Open your web browser.  Go to your favorite website.  Here's a simple one [https://checkip.kit.cm](https://checkip.kit.cm) [Source](https://github.com/KeystoneIT/checkip).
+
+@@ 3.html.ep
+
+%= include '2'
+
+### Alright... how did that work?
+
+* DNS
+* IPs
+* Routing
+* [HTTP](http://mojolicious.org/perldoc/Mojolicious/Guides/Growing)
+* Client / Server
+* What else?
+
+@@ 4.html.ep
+
+# Programming
+
+@@ 5.html.ep
+
+%= include '4'
+
+## Languages
+
+* HTML?
+* Client
+  * Javascript
+* Server
+  * Javascript (node.js)
+  * **Perl** / Python / PHP / Ruby / Go / and on and on...
+
+@@ 6.html.ep
+
+%= include '5'
+
+### Language Syntax / Grammar / et al (Not today)
+
+* Loops, conditionals, variables, scopes, data types, classes...
+* **Testing!!**
+* **Documentation!!**
+
+@@ 7.html.ep
+
+%= include '6'
+
+### Libraries / Frameworks (Difference?)
+* Javascript
+  * JQuery
+* Perl
+  * **Mojolicious**
+* ?
+* ... and then an endless supply of libraries with simple functions
+  * Date / Time
+  * Encryption
+  * ORM (Object/Relational Mapper)
+  * Protocols (SMTP, SNMP, LDAP, Databases, HTTP(S), SSH...)
+  * M0DU1E 7O c0NVer7 7ext 7O C0o1 741k (Lingua::31337)
+  * CPAN (172,000 some modules); other languages have their own (node.js 253,000)
+
+@@ 8.html.ep
+
+%= include '7'
+
+# Targets
+
+### Web
+
+*(We'll not cover this today, but this is the really fun and exciting stuff IMO -- the actual technology behind everything web)*
+
+* HTML / HTTP / REST / CGI
+* Cookies / SSL / Websockets / JSON
+
+### Nothing else matters
+
+@@ 9.html.ep
+
+# Environment
+
+<img src="/images/Selection_261.png" />
+
+@@ 10.html.ep
+
+# Environment
+
+### Cloud 9 (But first...)
+
+@@ 11.html.ep
+
+%= include '10'
+
+### GitHub
+
+* Repos
+  * Fork / Clone (The repo is yours, it's a copy of the original)
+* Committing
+  * Commit to your own repos
+  * Issue PRs (Pull Requests) to the original source you forked from to request a change you made be pulled into the original
+* Sharing
+  * Invite collaborators
+  * All kinds of useful links
+
+@@ 12.html.ep
+
+%= include '11'
+
+### Cloud 9
+
+* File Browser
+* Files
+* Wicked IDE features, just browse the menus (and documentation!)
+* Execution
+* Previewing / Publishing
+* Sharing
+  * Share your preview link to others
+  * Invite collaborators to work on your code with you in real time
+
+@@ 13.html.ep
+
+# Projects
+
+@@ 14.html.ep
+
+%= include '13'
+
+* Calculators ... ERPs (Boring ... Impossible)
+* This slidecast (Easy! Fun?)
+* Pastebins (Easy!  Fun!)
+* URL Shorteners (Easy! Fun!)
+
+@@ 15.html.ep
+
+# POTD (Project of the Day)
+
+@@ 16.html.ep
+
+%= include '15'
+
+### SimpleSlides (<%= link_to 'This very slideshare' => 'https://slides-s1037989.c9users.io' %>)
+
+Markdown, <b>HTML</b>, even <%= join '', Lingua::31337::text231337 'Perl' %>
+
+<xmp>
+Markdown, <b>HTML</b>, even <%%= Lingua::31337::text231337 'Perl' %>
+</xmp>
+
+*Shouldn't have to qualify the class, stupid class*
+
+* Create a github account
+* Create a c9 account by logging in with your GitHub account
+* Fork [this project](https://github.com/Keystone-Technologies/slides) into your github acct
+* Create a new workspace in c9, using your Github fork of this project (git@github.com:Keystone-Technologies/slides.git)
+* Install and configure any dependencies (cpanminus, Mojolicious)
+  * $ sudo apt-get install cpanminus
+  * $ echo 'cpanm --local-lib=~/perl5 local::lib && eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)' >> ~/.bashrc ; . ~/.bashrc
+  * $ cpanm Mojolicious Mojolicious::Plugin::SimpleSlides Lingua::31337
+* Run it / Test it
+  * $ mojo daemon -l http://*:8080 (No code, yet a web server is running)
+  * $ perl -Mojo -E 'a("/hello" => {text => "Hello Mojo!"})->start' daemon (Useful one-liners)
+  * $ morbo -l http://*:8080 slides (development web server, defaults to port 3000)
+    * C9 tells you that your web server must listen on port 8080
+* Modify it
+  * Change colors, fonts, styles, add slides
+  * Notice with morbo it automatically restarts with every change you make
+    * Disable auto-save
+* Share it
+  * Give the link to your project to your friends, family, co-workers, neighbors, nobody else
+* Go to town
+  * Add features.  Make it cool.  Make it your own.
+
+@@ 17.html.ep
+
+# The End.
