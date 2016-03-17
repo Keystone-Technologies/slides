@@ -26,12 +26,16 @@ app->start;
 
 # These are embedded templates, but as a project grows you'll probably want to
 # move each file into templates/
+#
+# TODO: enhance SimpleSlides to make moving and inserting new slides easier
 ###############################################################################
 __DATA__
 
 @@ 1.html.ep
 
 # Programming: How to Get Started??
+
+### TMTOWTDI
 
 @@ 2.html.ep
 
