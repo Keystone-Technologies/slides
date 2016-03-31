@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>remark - <%= title %></title>
+  <meta charset="utf-8">
+  %= stylesheet '/fonts.css'
+  %= stylesheet '/basic.css'
+</head>
+<body>
+  <textarea id="source"><%= content %></textarea>
+  %= javascript '/remark.min.js'
+  %= javascript '/custom.js'
+  <script>var slideshow = remark.create();</script>
+</body>
+</html>
