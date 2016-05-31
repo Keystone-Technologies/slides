@@ -217,7 +217,7 @@ Install and configure any dependencies (cpanminus, Mojolicious)
 .right-column[
 Run it / Test it
 * $ `mojo daemon -l http://*:8080` (No code, yet a web server is running)
-* $ `perl -Mojo -E 'a("/hello" => {text => "Hello Mojo!"})->start'` daemon (Useful one-liners)
+* $ `perl -Mojo -E 'a("/hello" => {text => "Hello Mojo!"})->start' daemon -l http://*:8080` (Useful one-liners)
 * $ `morbo -l http://*:8080 slides` (development web server, defaults to port 3000)
   * C9 tells you that your web server must listen on port 8080
 ]
